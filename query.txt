@@ -122,3 +122,284 @@ Source Data (9 Transactions)
     "region": "South"
   }
 ]
+
+
+2nd question
+
+
+Query 1: Find the total amount spent by each customer.
+
+This aggregates the total amount in the orders collection, grouped by customerId.
+
+_id (customerId)
+
+totalSpent
+
+C1002
+
+2000
+
+C1005
+
+900
+
+C1001
+
+800
+
+C1003
+
+700
+
+C1004
+
+400
+
+Query 2 & 5: Retrieve all orders with corresponding customer details.
+
+These queries join the orders collection with the customers collection using the customerId field. Since all orders have a matching customer, the results for both Query 2 and Query 5 are the same 7 documents, showing a complete join.
+
+Order _id
+
+product
+
+amount
+
+customerId
+
+customerDetails.name
+
+customerDetails.city
+
+2
+
+Phone
+
+1200
+
+C1002
+
+Bob
+
+Los Angeles
+
+6
+
+Tablet
+
+800
+
+C1002
+
+Bob
+
+Los Angeles
+
+7
+
+Smartwatch
+
+900
+
+C1005
+
+Eve
+
+Seattle
+
+4
+
+Monitor
+
+700
+
+C1003
+
+Charlie
+
+Chicago
+
+1
+
+Laptop
+
+500
+
+C1001
+
+Alice
+
+New York
+
+3
+
+Headphones
+
+300
+
+C1001
+
+Alice
+
+New York
+
+5
+
+Keyboard
+
+400
+
+C1004
+
+David
+
+Houston
+
+Query 3: Find orders where the amount is greater than Rs. 500.
+
+This uses the $match stage to filter orders where amount > 500.
+
+_id
+
+customerId
+
+amount
+
+product
+
+2
+
+C1002
+
+1200
+
+Phone
+
+4
+
+C1003
+
+700
+
+Monitor
+
+6
+
+C1002
+
+800
+
+Tablet
+
+7
+
+C1005
+
+900
+
+Smartwatch
+
+Query 4: Calculate the average order amount per customer.
+
+This aggregates the average amount for each customer.
+
+_id (customerId)
+
+averageOrderAmount
+
+C1002
+
+1000.0
+
+C1005
+
+900.0
+
+C1003
+
+700.0
+
+C1001
+
+400.0
+
+C1004
+
+400.0
+
+
+3rd question
+
+
+[
+  { "_id": "User1", "borrowedBookIds": ["Book1", "Book2", "Book4", "Book2", "Book2"] },
+  { "_id": "User4", "borrowedBookIds": ["Book1"] },
+  { "_id": "User2", "borrowedBookIds": ["Book3"] },
+  { "_id": "User3", "borrowedBookIds": ["Book2", "Book5"] }
+]
+
+[
+  { "_id": "Book2", "borrowCount": 4 },
+  { "_id": "Book1", "borrowCount": 2 },
+  { "_id": "Book3", "borrowCount": 1 }
+]
+
+[
+  { "_id": "Loan1", "loanDate": ISODate("2023-05-01T00:00:00Z"), "status": "Returned", "bookTitle": "The Alchemist", "bookAuthor": "Paulo Coelho" },
+  { "_id": "Loan2", "loanDate": ISODate("2023-05-20T00:00:00Z"), "status": "Borrowed", "bookTitle": "Clean Code", "bookAuthor": "Robert C. Martin" },
+  { "_id": "Loan5", "loanDate": ISODate("2023-03-01T00:00:00Z"), "status": "Returned", "bookTitle": "Atomic Habits", "bookAuthor": "James Clear" },
+  { "_id": "Loan8", "loanDate": ISODate("2023-06-15T00:00:00Z"), "status": "Borrowed", "bookTitle": "Clean Code", "bookAuthor": "Robert C. Martin" },
+  { "_id": "Loan9", "loanDate": ISODate("2023-07-01T00:00:00Z"), "status": "Borrowed", "bookTitle": "Clean Code", "bookAuthor": "Robert C. Martin" }
+]
+
+[
+  { "_id": "User1", "totalLoans": 5 }
+]
+
+[
+  { "_id": "Loan1", "loanDate": ISODate("2023-05-01T00:00:00Z"), "returnDate": ISODate("2023-05-15T00:00:00Z"), "status": "Returned", "borrowerName": "Alice", "bookTitle": "The Alchemist" },
+  { "_id": "Loan2", "loanDate": ISODate("2023-05-20T00:00:00Z"), "returnDate": null, "status": "Borrowed", "borrowerName": "Alice", "bookTitle": "Clean Code" },
+  { "_id": "Loan3", "loanDate": ISODate("2023-04-10T00:00:00Z"), "returnDate": ISODate("2023-04-25T00:00:00Z"), "status": "Returned", "borrowerName": "Bob", "bookTitle": "1984" },
+  { "_id": "Loan4", "loanDate": ISODate("2023-05-05T00:00:00Z"), "returnDate": null, "status": "Borrowed", "borrowerName": "Charlie", "bookTitle": "Clean Code" },
+  { "_id": "Loan5", "loanDate": ISODate("2023-03-01T00:00:00Z"), "returnDate": ISODate("2023-03-10T00:00:00Z"), "status": "Returned", "borrowerName": "Alice", "bookTitle": "Atomic Habits" },
+  { "_id": "Loan6", "loanDate": ISODate("2023-05-01T00:00:00Z"), "returnDate": ISODate("2023-05-15T00:00:00Z"), "status": "Returned", "borrowerName": "David", "bookTitle": "The Alchemist" },
+  { "_id": "Loan7", "loanDate": ISODate("2023-06-01T00:00:00Z"), "returnDate": null, "status": "Borrowed", "borrowerName": "Charlie", "bookTitle": "The Pragmatic Programmer" },
+  { "_id": "Loan8", "loanDate": ISODate("2023-06-15T00:00:00Z"), "returnDate": null, "status": "Borrowed", "borrowerName": "Alice", "bookTitle": "Clean Code" },
+  { "_id": "Loan9", "loanDate": ISODate("2023-07-01T00:00:00Z"), "returnDate": null, "status": "Borrowed", "borrowerName": "Alice", "bookTitle": "Clean Code" }
+]
+
+[
+  { "_id": "Programming", "totalBorrowed": 5 },
+  { "_id": "Self-help", "totalBorrowed": 1 },
+  { "_id": "Fiction", "totalBorrowed": 2 },
+  { "_id": "Dystopian", "totalBorrowed": 1 }
+]
+
+[
+  { "_id": "Loan2", "loanDate": ISODate("2023-05-20T00:00:00Z"), "borrowerName": "Alice", "bookTitle": "Clean Code" },
+  { "_id": "Loan4", "loanDate": ISODate("2023-05-05T00:00:00Z"), "borrowerName": "Charlie", "bookTitle": "Clean Code" },
+  { "_id": "Loan7", "loanDate": ISODate("2023-06-01T00:00:00Z"), "borrowerName": "Charlie", "bookTitle": "The Pragmatic Programmer" },
+  { "_id": "Loan8", "loanDate": ISODate("2023-06-15T00:00:00Z"), "borrowerName": "Alice", "bookTitle": "Clean Code" },
+  { "_id": "Loan9", "loanDate": ISODate("2023-07-01T00:00:00Z"), "borrowerName": "Alice", "bookTitle": "Clean Code" }
+]
+
+[
+  { "_id": "User4", "returnedCount": 1 },
+  { "_id": "User2", "returnedCount": 1 },
+  { "_id": "User1", "returnedCount": 2 }
+]
+
+[
+  { "borrowerId": "User1", "genres": ["Self-help", "Fiction", "Programming"] }
+]
+
+[
+  { "borrowerId": "User1", "borrowerName": "Alice", "totalBorrowCount": 5 },
+  { "borrowerId": "User3", "borrowerName": "Charlie", "totalBorrowCount": 2 },
+  { "borrowerId": "User2", "borrowerName": "Bob", "totalBorrowCount": 1 },
+  { "borrowerId": "User4", "borrowerName": "David", "totalBorrowCount": 1 }
+]
+
+
+
+
