@@ -1,0 +1,53 @@
+[
+  {
+    "order_id": 2,
+    "customer_name": "Jane Smith",
+    "items": ["Headphones", "Charger"],
+    "total_amount": 3000,
+    "order_status": "shipped"
+  },
+  {
+    "order_id": 5,
+    "customer_name": "Chris Green",
+    "items": ["Smartwatch"],
+    "total_amount": 7000,
+    "order_status": "shipped"
+  }
+]
+
+
+{ "acknowledged": true, "matchedCount": 1, "modifiedCount": 1 }
+
+
+{ "acknowledged": true, "deletedCount": 1 }
+
+
+[
+  {
+    "order_id": 3,
+    "customer_name": "Alice Johnson",
+    "items": ["Mobile Phone"],
+    "total_amount": 20000,
+    "order_status": "delivered"
+  }
+]
+
+
+{ "acknowledged": true, "matchedCount": 1, "modifiedCount": 1 }
+
+[
+  {
+    "order_id": 1,
+    "customer_name": "John Doe",
+    "items": ["Laptop", "Mouse"],
+    "total_amount": 70000,
+    "order_status": "pending"
+  },
+  {
+    "order_id": 3,
+    "customer_name": "Alice Johnson",
+    "items": ["Mobile Phone"],
+    "total_amount": 20000,
+    "order_status": "delivered"
+  }
+]
